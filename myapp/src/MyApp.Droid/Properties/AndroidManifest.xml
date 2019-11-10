@@ -4,5 +4,6 @@
     android:versionCode="1" package="com.mycompany.myapp"
     android:installLocation="auto">
   <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="29" />
-  <application android:label="MyApp"/>
+  <application android:label="MyApp"
+               android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 </manifest>
