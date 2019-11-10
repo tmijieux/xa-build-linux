@@ -25,8 +25,8 @@ RUN cd /tmp \
     && cd /tmp \
     && rm msbuild-* -rf
 
-COPY build.sh /
-RUN chmod +rx /usr/bin/msbuild /build.sh
+COPY build-xa.sh /
+RUN chmod +rx /usr/bin/msbuild /build-xa.sh
 WORKDIR /home/builduser/
 USER builduser
-CMD [ "/build.sh" ]
+CMD [ "/build-xa.sh" ]

@@ -2,13 +2,14 @@
 
 set -x
 set -e
+cd $(dirname $0)
 
-VOLUMEDIR=${HOME}/xa-home
-mkdir -p ${VOLUMEDIR}
+BUILD_HOME=${HOME}/xa-home
+mkdir -p ${BUILD_HOME}
 
-docker run \
-    -it \
-    --rm \
-    -v ${VOLUMEDIR}:/home/builduser \
+docker build -t xa-build .
+
+docker run -it --rm \
+    -v ${BUILD_HOME}:/home/builduser \
     --name xa-build \
     xa-build
