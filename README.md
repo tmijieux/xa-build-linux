@@ -3,9 +3,10 @@
 ## Prerequisites
 
 The solution presented here to install xamarin-android make use of docker
+
 ```
 pacman -Syu docker
-``̀ 
+```
 
 ## Installing
 
