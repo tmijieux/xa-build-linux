@@ -10,20 +10,10 @@ RUN pacman -Syu --noconfirm --disable-download-timeout \
     && pacman -Scc --noconfirm
 
 ARG USER_ID=1000
-
-# Mono MSBuild 16.3
-RUN cd /tmp \
-    && curl https://aur.archlinux.org/cgit/aur.git/snapshot/msbuild-16-bin.tar.gz -O \
-    && tar xf msbuild-16-bin.tar.gz \
+RUN pacman -Syu --noconfirm mono-msbuild \
     && useradd -m -u $USER_ID builduser \
     && passwd -d builduser \
-    && printf 'builduser ALL=(ALL) ALL\n' | tee -a /etc/sudoers \
-    && chown -R builduser:builduser /tmp/msbuild-16-bin \
-    && cd msbuild-16-bin \
-    && sudo -u builduser makepkg --noconfirm \
-    && pacman -U *.pkg.tar.xz --noconfirm \
-    && cd /tmp \
-    && rm msbuild-* -rf
+    && printf 'builduser ALL=(ALL) ALL\n' | tee -a /etc/sudoers
 
 COPY build-xa.sh /
 RUN chmod +rx /usr/bin/msbuild /build-xa.sh
